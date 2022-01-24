@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import { catchedPokemonContext } from "./context/catchedPokemonContext";
+import { dataPokemonContext } from "./context/dataPokemonContext";
+import Routing from "./Routing";
 
 function App() {
+  const [dataPokemon, setDataPokemon] = useState([]);
+  const [catchedPokemon, setCatchedPokemon] = useState([]);
+
+  const getAllPokemons = async () => {
+    const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=5");
+    const data = await res.json();
+
+    function getPokemonObject(result) {
+      result.forEach(async (pokemon) => {
+        const res = await fetch(
+          `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
+        );
+        const data = await res.json();
+
+        setDataPokemon((currentData) => [...currentData, data]);
+      });
+    }
+    getPokemonObject(data.results);
+  };
+
+  useEffect(() => {
+    getAllPokemons();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <dataPokemonContext.Provider value={{ dataPokemon, setDataPokemon }}>
+      <catchedPokemonContext.Provider
+        value={{ catchedPokemon, setCatchedPokemon }}
+      >
+        <Routing />
+      </catchedPokemonContext.Provider>
+    </dataPokemonContext.Provider>
   );
 }
 
