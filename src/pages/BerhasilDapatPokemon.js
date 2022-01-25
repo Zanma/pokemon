@@ -24,7 +24,7 @@ const Title = styled.p`
 const InputContainer = styled.div`
   margin-top: 30px;
   max-width: 300px;
-  border: 0.5px solid #e3e3e3;
+  border: 0.5px solid #696969;
   border-radius: 10px;
   padding: 20px;
 `;
@@ -95,7 +95,7 @@ const BerhasilDapatPokemon = () => {
 
     //cek apakah ada nama yg sama, jika ada ubah namaSama = true
     pokemonList.forEach((pokemon) => {
-      if (pokemon.nickname === nickname) {
+      if (pokemon.nickname.toLowerCase() === nickname.toLowerCase()) {
         console.log("ada nama pokemon sama");
         namaSama = true;
       }
@@ -109,7 +109,7 @@ const BerhasilDapatPokemon = () => {
     } else {
       pokemonList.push({
         id: catchedPokemon.id,
-        nickname: nickname,
+        nickname: nickname.toLowerCase(),
         name: catchedPokemon.name,
         image: catchedPokemon.sprites.front_default,
         type: catchedPokemon.types[0].type.name,

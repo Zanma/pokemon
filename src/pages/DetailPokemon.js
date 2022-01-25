@@ -45,7 +45,7 @@ const Tag = styled.p`
 `;
 
 const Detail = styled.div`
-  border: 0.5px solid #e3e3e3;
+  border: 0.5px solid #696969;
   border-radius: 10px;
   margin: 20px 0;
   padding-bottom: 10px;
@@ -59,14 +59,14 @@ const DetailUp = styled.div`
 
 const DetailTitle = styled(Text)`
   text-align: center;
-  font-size: 12px;
+  font-size: 14px;
 `;
 
 const DetailInfo = styled(Tag)`
   border-radius: 5px;
-  border: 0.5px solid #e3e3e3;
+  border: 0.5px solid #c1c1c1;
   padding: 8px 25px;
-  font-size: 12px;
+  font-size: 13px;
   color: #8c8c8c;
 `;
 
@@ -82,7 +82,7 @@ const MoveContainer = styled.div`
 
 const Move = styled.p`
   border-radius: 5px;
-  border: 0.5px solid #e3e3e3;
+  border: 0.5px solid #8e8e8e;
   width: 70px;
   padding: 8px 10px;
   font-size: 12px;

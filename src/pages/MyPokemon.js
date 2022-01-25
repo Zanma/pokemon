@@ -64,8 +64,9 @@ const Type = styled.p`
   border: 0.5px solid #696969;
   border-radius: 15px;
   width: 50px;
-  padding: 5px 5px;
+  padding: 8px 5px;
   text-align: center;
+  align-item: center;
   text-transform: capitalize;
   margin: 0;
 `;
