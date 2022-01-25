@@ -1,4 +1,5 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
 
 import PokemonList from "../components/PokemonList";
@@ -10,9 +11,23 @@ const Container = styled.div`
   padding: 24px;
 `;
 
+const HeaderContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  background: white;
+  padding-bottom: 20px;
+  width: 100%;
+`;
+
+const PokemonContainer = styled.div`
+  padding-top: 120px;
+`;
+
 const Header = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 `;
 
 const Logo = styled.p`
@@ -36,24 +51,41 @@ const Text = styled.p`
 
 const Homepage = () => {
   const { dataPokemon } = useContext(dataPokemonContext);
+  const [myPokemon, setMyPokemon] = useState([]);
+
+  const navigate = useNavigate();
+
+  const ambilData = () => {
+    if (localStorage.getItem("pokemonList") == null) {
+      setMyPokemon([]);
+    } else {
+      setMyPokemon(JSON.parse(localStorage.getItem("pokemonList")));
+    }
+  };
+
+  useEffect(() => {
+    ambilData();
+  }, []);
 
   return (
     <Container>
-      <Header>
-        <Logo>Pokedex</Logo>
-        <Button>My Pokemon</Button>
-      </Header>
-      <Header>
-        <Text>Pokemon List</Text>
-        <Text>Owned : </Text>
-      </Header>
-      <div>
+      <HeaderContainer>
+        <Header>
+          <Logo>Pokedex</Logo>
+          <Button onClick={() => navigate("/mypokemon")}>My Pokemon</Button>
+        </Header>
+        <Header>
+          <Text>Pokemon List</Text>
+          <Text>Owned : {myPokemon.length}</Text>
+        </Header>
+      </HeaderContainer>
+      <PokemonContainer>
         {dataPokemon
           .sort((a, b) => (a.id > b.id ? 1 : -1))
           .map((pokemon, index) => (
             <PokemonList pokemon={pokemon} key={index} />
           ))}
-      </div>
+      </PokemonContainer>
     </Container>
   );
 };

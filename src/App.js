@@ -8,7 +8,7 @@ function App() {
   const [catchedPokemon, setCatchedPokemon] = useState([]);
 
   const getAllPokemons = async () => {
-    const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=5");
+    const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=100");
     const data = await res.json();
 
     function getPokemonObject(result) {
