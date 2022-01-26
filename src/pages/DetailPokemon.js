@@ -21,7 +21,6 @@ const Card = styled.div`
 `;
 
 const Text = styled.p`
-  text-transform: capitalize;
   color: #4a4a4a;
   font-weight: 300;
 `;
@@ -111,20 +110,17 @@ const DetailPokemon = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // console.log(dataPokemon);
-
   const pokemonSelected = dataPokemon[id - 1];
+  console.log(pokemonSelected);
 
   const catchPokemon = (pokemonSelected) => {
     const hasilGacha = Math.round(Math.random() * 9);
     if (hasilGacha < 5) {
       // 0, 1, 2, 3, 4 = sukses
-      console.log("SSR", hasilGacha, pokemonSelected);
       setCatchedPokemon(pokemonSelected);
       navigate("/berhasil-dapat-pokemon");
     } else {
       // 5, 6, 7, 8, 9 = gagal
-      console.log("AMPAS", hasilGacha);
       navigate("/gagal-dapat-pokemon");
     }
   };
@@ -166,7 +162,6 @@ const DetailPokemon = () => {
           />
         </div>
       </Card>
-      {/* <h4>Detail Pokemon</h4> */}
       <Detail>
         <DetailUp>
           <div>
@@ -189,6 +184,7 @@ const DetailPokemon = () => {
       <Button onClick={() => catchPokemon(pokemonSelected)}>
         Catch The Pokemon
       </Button>
+      <DetailTitle>NB: You have a 50% chance to get the pokemon</DetailTitle>
     </Container>
   );
 };

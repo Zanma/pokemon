@@ -55,8 +55,6 @@ const Homepage = () => {
 
   const navigate = useNavigate();
 
-  console.log(dataPokemon);
-
   const ambilData = () => {
     if (localStorage.getItem("pokemonList") == null) {
       setMyPokemon([]);

@@ -96,7 +96,6 @@ const BerhasilDapatPokemon = () => {
     //cek apakah ada nama yg sama, jika ada ubah namaSama = true
     pokemonList.forEach((pokemon) => {
       if (pokemon.nickname.toLowerCase() === nickname.toLowerCase()) {
-        console.log("ada nama pokemon sama");
         namaSama = true;
       }
     });
