@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
 
-import { catchedPokemonContext } from "../context/catchedPokemonContext";
-import { dataPokemonContext } from "../context/dataPokemonContext";
+import { CatchedPokemonContext } from "../context/CatchedPokemonContext";
+import { DataPokemonContext } from "../context/DataPokemonContext";
 
 const Container = styled.div`
   max-width: 500px;
@@ -82,7 +82,7 @@ const MoveContainer = styled.div`
 
 const Move = styled.p`
   border-radius: 5px;
-  border: 0.5px solid #8e8e8e;
+  border: 0.5px solid #c1c1c1;
   width: 70px;
   padding: 8px 10px;
   font-size: 12px;
@@ -105,11 +105,13 @@ const Button = styled.button`
 `;
 
 const DetailPokemon = () => {
-  const { dataPokemon } = useContext(dataPokemonContext);
-  const { setCatchedPokemon } = useContext(catchedPokemonContext);
+  const { dataPokemon } = useContext(DataPokemonContext);
+  const { setCatchedPokemon } = useContext(CatchedPokemonContext);
   const [moves, setMoves] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
+
+  // console.log(dataPokemon);
 
   const pokemonSelected = dataPokemon[id - 1];
 

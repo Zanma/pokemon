@@ -29,7 +29,7 @@ const Title = styled(Text)`
 const Type = styled.p`
   border: 0.5px solid #696969;
   border-radius: 15px;
-  width: 50px;
+  width: 60px;
   padding: 5px;
   text-align: center;
   text-transform: capitalize;

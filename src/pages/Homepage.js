@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
 
 import PokemonList from "../components/PokemonList";
-import { dataPokemonContext } from "../context/dataPokemonContext";
+import { DataPokemonContext } from "../context/DataPokemonContext";
 
 const Container = styled.div`
   max-width: 500px;
@@ -50,10 +50,12 @@ const Text = styled.p`
 `;
 
 const Homepage = () => {
-  const { dataPokemon } = useContext(dataPokemonContext);
+  const { dataPokemon, setDataPokemon } = useContext(DataPokemonContext);
   const [myPokemon, setMyPokemon] = useState([]);
 
   const navigate = useNavigate();
+
+  console.log(dataPokemon);
 
   const ambilData = () => {
     if (localStorage.getItem("pokemonList") == null) {
@@ -62,6 +64,30 @@ const Homepage = () => {
       setMyPokemon(JSON.parse(localStorage.getItem("pokemonList")));
     }
   };
+
+  const getAllPokemons = async () => {
+    if (dataPokemon.length === 0) {
+      //biar gk ngepush data lagi kalau di back (kerena bakal render ulang)
+      const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=100`);
+      const data = await res.json();
+
+      function getPokemonObject(result) {
+        result.forEach(async (pokemon) => {
+          const res = await fetch(
+            `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
+          );
+          const data = await res.json();
+
+          setDataPokemon((currentData) => [...currentData, data]);
+        });
+      }
+      getPokemonObject(data.results);
+    }
+  };
+
+  useEffect(() => {
+    getAllPokemons();
+  }, []);
 
   useEffect(() => {
     ambilData();

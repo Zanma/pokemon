@@ -13,7 +13,16 @@ code {
 }
 
 .rock {
-  background-color: rgb(148, 81, 81);
+  background-color: #e3a95d;
+}
+.ground {
+  background-color: #ffe796;
+}
+.psychic {
+  background-color: #ad8aff;
+}
+.fighting {
+  background-color: #ffb38a;
 }
 .ghost {
   background-color: rgb(247, 247, 247);

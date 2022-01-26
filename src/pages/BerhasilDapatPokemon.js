@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
 
-import { catchedPokemonContext } from "../context/catchedPokemonContext";
+import { CatchedPokemonContext } from "../context/CatchedPokemonContext";
 
 import imageGetPokemon from "../assets/imageGetPokemon.png";
 
@@ -74,7 +74,7 @@ const Button = styled.button`
 `;
 
 const BerhasilDapatPokemon = () => {
-  const { catchedPokemon } = useContext(catchedPokemonContext);
+  const { catchedPokemon } = useContext(CatchedPokemonContext);
   const [nickname, setNickname] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 

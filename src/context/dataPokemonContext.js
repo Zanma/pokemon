@@ -1,3 +1,3 @@
 import { createContext } from "react";
 
-export const dataPokemonContext = createContext();
+export const DataPokemonContext = createContext();
